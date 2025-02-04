@@ -16,6 +16,11 @@ app.get('/users', (req, res) => {
   res.json(db.users);
 });
 
+app.use((req, res, next) => {
+  console.log(`Petición: ${req.method} ${req.url}`);
+  next();
+  });
+
 app.post('/users', (req, res) => {
   const db = readDB();
   const { user, dni, phone, email } = req.body;
